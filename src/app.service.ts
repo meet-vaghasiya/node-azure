@@ -1,7 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
+  private readonly logger = new Logger(AppService.name);
+
   getHomePage(): string {
     return `
       <!DOCTYPE html>
@@ -117,5 +119,13 @@ export class AppService {
       </body>
       </html>
     `;
+  }
+
+  logWarning(): void {
+    this.logger.warn('This is a test warning log for Azure App Service logging verification.');
+  }
+
+  logError(): void {
+    this.logger.error('This is a test error log for Azure App Service logging verification.');
   }
 }

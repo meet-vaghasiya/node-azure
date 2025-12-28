@@ -10,4 +10,16 @@ export class AppController {
   getHome(): string {
     return this.appService.getHomePage();
   }
+
+  @Get('log-warning')
+  logWarning(): string {
+    this.appService.logWarning();
+    return 'Warning logged successfully. Check Azure App Service logs.';
+  }
+
+  @Get('log-error')
+  logError(): string {
+    this.appService.logError();
+    return 'Error logged successfully. Check Azure App Service logs.';
+  }
 }
