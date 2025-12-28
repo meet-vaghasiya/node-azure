@@ -11,6 +11,11 @@ export class AppController {
     return this.appService.getHomePage();
   }
 
+  @Get('health')
+  getHealth() {
+    return this.appService.getHealthStatus();
+  }
+
   @Get('log-warning')
   logWarning(): string {
     this.appService.logWarning();

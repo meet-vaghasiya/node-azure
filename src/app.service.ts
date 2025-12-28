@@ -121,11 +121,28 @@ export class AppService {
     `;
   }
 
+  getHealthStatus() {
+    const healthData = {
+      status: 'healthy',
+      timestamp: new Date().toISOString(),
+      environment: {
+        PORT: process.env.PORT || '3000',
+        NODE_ENV: process.env.NODE_ENV || 'development',
+      },
+      uptime: process.uptime(),
+    };
+
+    // Log environment variables for Azure monitoring
+    this.logger.log(`Health check - PORT: ${healthData.environment.PORT}, NODE_ENV: ${healthData.environment.NODE_ENV}`);
+
+    return healthData;
+  }
+
   logWarning(): void {
-    this.logger.warn('This is a test warning log for Azure App Service logging verification.');
+    this.logger.warn(`This is a test warning log for Azure App Service logging verification. PORT: ${process.env.PORT || '3000'}`);
   }
 
   logError(): void {
-    this.logger.error('This is a test error log for Azure App Service logging verification.');
+    this.logger.error(`This is a test error log for Azure App Service logging verification. NODE_ENV: ${process.env.NODE_ENV || 'development'}`);
   }
 }
