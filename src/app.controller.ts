@@ -1,4 +1,4 @@
-import { Controller, Get, Header } from '@nestjs/common';
+import { Controller, Get, Header, HttpCode } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -31,5 +31,20 @@ export class AppController {
   @Get('crash')
   crashApp(): void {
     process.exit(1);
+  }
+
+  @Get('error-crash')
+  errorCrash(): string {
+    // Schedule an unhandled error to be thrown asynchronously after response is sent
+    setImmediate(() => {
+      throw new Error('Simulated unhandled error that crashes the app');
+    });
+    return 'Error scheduled to crash the app. Check logs.';
+  }
+
+  @Get('status-506')
+  @HttpCode(506)
+  getStatus506(): string {
+    return 'Variant Also Negotiates';
   }
 }
