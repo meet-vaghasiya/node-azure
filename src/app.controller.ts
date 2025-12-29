@@ -27,4 +27,9 @@ export class AppController {
     this.appService.logError();
     return 'Error logged successfully. Check Azure App Service logs.';
   }
+
+  @Get('crash')
+  crashApp(): void {
+    process.exit(1);
+  }
 }
