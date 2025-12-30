@@ -15,7 +15,11 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "docker:build": "docker build -t nestjs-app .",
+    "docker:tag": "docker tag nestjs-app meetvaghasiya/nestjs-app:latest",
+    "docker:push": "docker push meetvaghasiya/nestjs-app:latest",
+    "docker:deploy": "npm run docker:build && npm run docker:tag && npm run docker:push"
   },
   "keywords": [
     "nestjs",
