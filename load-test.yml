@@ -13,11 +13,11 @@ config:
 scenarios:
   - name: 'Home page'
     weight: 70
-    requests:
+    flow:
       - get:
           url: '/'
   - name: 'Health check'
     weight: 30
-    requests:
+    flow:
       - get:
           url: '/health'
